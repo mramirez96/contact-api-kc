@@ -13,5 +13,9 @@ namespace Infraestructure.Data.Entities
         public string Number { get; set; }
         [Required]
         public PhoneType Type { get; set; }
+
+        public int ContactId { get; set; }
+        public Contact Contact { get; set; }
+
     }
 }
