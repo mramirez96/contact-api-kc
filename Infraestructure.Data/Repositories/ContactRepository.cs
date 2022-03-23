@@ -36,7 +36,7 @@ namespace Infraestructure.Data.Repositories
                 dbEntity.Company = null;
             }
             else if (await _companyRepository.GetByName(dbEntity.Company.Name) != null)
-                throw new ConflictException("company", $"name {dbEntity.Name}");
+                throw new ConflictException("company", $"name {dbEntity.Company.Name}");
 
             var added = Map(await Add(dbEntity));
             added.Company = await _companyRepository.GetById(dbEntity.CompanyId);
