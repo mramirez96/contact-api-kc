@@ -2,10 +2,11 @@
 using Domain.Request;
 using Infraestructure.Abstractions;
 using Infraestructure.Data.Abstractions;
+using Infraestructure.Validations;
 
 namespace Infraestructure.Services
 {
-    internal class ContactService : IContactService
+    public class ContactService : BaseService, IContactService 
     {
         private readonly IContactRepository _repository;
         private readonly IBlobStorageService _blobStorageService;
@@ -29,6 +30,9 @@ namespace Infraestructure.Services
 
         public async Task<Contact> Create(Contact contact)
         {
+            var validator = new CreateContactValidator();
+            Validate(validator, contact);
+
             if (!string.IsNullOrEmpty(contact.ImageAsBase64))
             {
                 contact.Uri = await UploadFile(contact.ImageAsBase64);

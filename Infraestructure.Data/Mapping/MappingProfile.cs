@@ -4,8 +4,6 @@ namespace Infraestructure.Data.Mapping
 {
     public class MappingProfile : Profile
     {
-        private const string DateFormat = "dd/MM/yyyy";
-
         public MappingProfile()
         {
             CreateMap<Domain.Company, Entities.Company>();
@@ -13,11 +11,11 @@ namespace Infraestructure.Data.Mapping
             
             CreateMap<Domain.Contact, Entities.Contact>()
                 .ForMember(c => c.Birthdate, 
-                    m => m.MapFrom(u => DateTime.ParseExact(u.Birthdate, DateFormat, null)))
+                    m => m.MapFrom(u => DateTime.ParseExact(u.Birthdate, Domain.Contact.DateFormat, null)))
                 .ForMember(c => c.ProfileImgUri, m => m.MapFrom(u => u.Uri));
             CreateMap<Entities.Contact, Domain.Contact>()
                 .ForMember(c => c.Birthdate,
-                    m => m.MapFrom(u => u.Birthdate.ToString(DateFormat)))
+                    m => m.MapFrom(u => u.Birthdate.ToString(Domain.Contact.DateFormat)))
                 .ForMember(c => c.Uri, m => m.MapFrom(u => u.ProfileImgUri));
 
             CreateMap<Domain.Address, Entities.Address>();

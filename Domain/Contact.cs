@@ -4,6 +4,8 @@ namespace Domain
 {
     public class Contact
     {
+        public static readonly string DateFormat = "dd/MM/yyyy";
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string ImageAsBase64 { get; set; }

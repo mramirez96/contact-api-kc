@@ -2,7 +2,7 @@
 
 namespace Infraestructure.Abstractions
 {
-    internal interface IBlobStorageService
+    public interface IBlobStorageService
     {
         Task<string> UploadFile(UploadFileRequest request);
     }
